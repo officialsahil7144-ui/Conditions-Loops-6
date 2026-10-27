@@ -1,29 +1,19 @@
-#!/usr/bin/env bash
-set -e
-
-NUMBER=7
-
-echo "Checking number: $NUMBER"
-
-if (( NUMBER > 0 )); then
-    echo "The number is positive."
-elif (( NUMBER < 0 )); then
-    echo "The number is negative."
-else
-    echo "The number is zero."
-fi
-
+#!/usr/bin/env bash 
+read -r -p "Enter a number: " n 
+if ! [[ "$n" =~ ^-?[0-9]+$ ]]; then 
+  echo "Please enter an integer." 
+  exit 1 
+fi 
+if (( n > 0 )); then 
+  echo "Positive" 
+elif (( n < 0 )); then 
+  echo "Negative" 
+else 
+  echo "Zero" 
+fi 
+echo "Counting from 1 to 5:" 
+for i in {1..5}; do 
+  (( i == 3 )) && continue 
+  printf '%s ' "$i" 
+done 
 echo
-echo "Numbers from 1 to 5:"
-for i in {1..5}; do
-    echo "$i"
-done
-
-echo
-echo "Countdown:"
-COUNT=3
-while (( COUNT > 0 )); do
-    echo "$COUNT"
-    ((COUNT--)) || true
-done
-echo "Go!"
